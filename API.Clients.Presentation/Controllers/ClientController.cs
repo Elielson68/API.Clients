@@ -13,6 +13,7 @@ namespace API.Clients.Controllers
     [Route("api/[controller]")]
     public class ClientController : Controller
     {
+        //context
         private readonly IApiContext _appContext;
         public ClientController(IApiContext appContext)
         {
