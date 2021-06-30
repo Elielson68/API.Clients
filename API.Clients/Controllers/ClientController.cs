@@ -1,11 +1,11 @@
-﻿using API.Clients.Database.Context;
-using API.Clients.Database.Interfaces;
+﻿using API.Clients.Database.Interfaces;
 using API.Clients.Dto;
 using API.Clients.Models;
 using API.Clients.Validations;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http.Cors;
 
 namespace API.Clients.Controllers
 {

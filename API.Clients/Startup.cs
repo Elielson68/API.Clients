@@ -24,12 +24,24 @@ namespace API.Clients.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        ;
+                    });
+            });
             services.AddControllers();
             services.AddScoped<RegisterClientValidation>();
             services.AddMvc();
             services.AddScoped<IApiContext, ApiContext>();
             services.AddDbContextPool<ApiContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ContextConnectionString")));
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,13 +58,14 @@ namespace API.Clients.Presentation
             }
             else
             {
-                app.UseHsts();
+                //app.UseHsts();
             }
             app.UseSwagger();
             app.UseSwaggerUI(c => {
                 c.RoutePrefix = string.Empty;
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
@@ -61,6 +74,7 @@ namespace API.Clients.Presentation
                 endpoints.MapControllers();
             });
             
+
         }
     }
 }

@@ -18,5 +18,9 @@ namespace API.Clients.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public string NumberComputer { get; set; }
+        public bool AlertStreamer { get; set; }
+        public bool HaveAnimal { get; set; }
+        public string Data { get; set; }
     }
 }
